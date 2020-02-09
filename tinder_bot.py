@@ -39,6 +39,18 @@ class TinderBot():
         popup_2 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
         popup_2.click()
 
+    def interest_popup(self):
+        nointerest_btn = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
+        nointerest_btn.click()
+    
+    def payment_popup(self):
+        nopayment_btn = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[3]/button[2]')
+        nopayment_btn.click()
+
+    def close_match(self):
+        confirm_match = self.driver.find_element_by_xpath('')
+        confirm_match.click()
+
     def like(self):
         like_btn = self.driver.find_element_by_xpath('//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div[1]/div/div[2]/button[3]')
         like_btn.click()
@@ -47,11 +59,29 @@ class TinderBot():
         dislike_btn = self.driver.find_element_by_xpath('//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div[1]/div/div[2]/button[1]')
         dislike_btn.click()
 
-    def auto_like(self):
+    def auto_swipe(self):
+        from random import random
+        left_count, right_count = 0, 0
         while True:
             sleep(0.5)
-            self.like()
-    
-
+            try:
+                rand = random()
+                if rand < .8:
+                    self.like()
+                    right_count += 1
+                    print('{}th right swipe'.format(right_count))
+                else:
+                    self.dislike()
+                    left_count += 1
+                    print('{}th left swipe'.format(left_count))
+            except Exception:
+                try:
+                    self.interest_popup()
+                except Exception:
+                    try:
+                        self.payment_popup()
+                    except Exception:
+                        self.close_match()
+                        
 bot = TinderBot()
 bot.login()
