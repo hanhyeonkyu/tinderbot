@@ -66,7 +66,7 @@ class TinderBot():
             sleep(0.5)
             try:
                 rand = random()
-                if rand < .8:
+                if rand < .9:
                     self.like()
                     right_count += 1
                     print('{}th right swipe'.format(right_count))
