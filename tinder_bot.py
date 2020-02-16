@@ -39,6 +39,14 @@ class TinderBot():
         popup_2 = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
         popup_2.click()
 
+        sleep(5)
+
+        try:
+            confirm_email_later = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/div[2]/button[2]')
+            confirm_email_later.click()
+        except Exception:
+            print("not confirm email today")
+
     def interest_popup(self):
         nointerest_btn = self.driver.find_element_by_xpath('//*[@id="modal-manager"]/div/div/div[2]/button[2]')
         nointerest_btn.click()
