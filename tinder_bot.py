@@ -87,9 +87,10 @@ class TinderBot():
                     self.interest_popup()
                 except Exception:
                     try:
-                        self.payment_popup()
-                    except Exception:
                         self.close_match()
+                        break
+                    except Exception:
+                        self.payment_popup()
                         
 bot = TinderBot()
 bot.login()
