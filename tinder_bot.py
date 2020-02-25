@@ -56,7 +56,7 @@ class TinderBot():
         nopayment_btn.click()
 
     def close_match(self):
-        confirm_match = self.driver.find_element_by_xpath('')
+        confirm_match = self.driver.find_element_by_xpath('//*[@id="modal-manager-canvas"]/div/div/div[1]/div/div[3]/a')
         confirm_match.click()
 
     def like(self):
@@ -88,9 +88,9 @@ class TinderBot():
                 except Exception:
                     try:
                         self.close_match()
-                        break
                     except Exception:
                         self.payment_popup()
+                        break
                         
 bot = TinderBot()
 bot.login()
